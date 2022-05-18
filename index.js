@@ -28,6 +28,14 @@ async function run() {
       const result = await todoCollection.insertOne(todo);
       res.send(result);
     });
+
+    //get todo
+    app.get("/todo", async (req, res) => {
+      const query = {};
+      const cursor = todoCollection.find(query);
+      const todo = await cursor.toArray();
+      res.send(todo);
+    });
   } finally {
   }
 }
